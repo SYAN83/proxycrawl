@@ -20,7 +20,7 @@ To use ProxyCrawl API, you need to register an account and get your token at [pr
 Installing from GitHub (bash):
 
 ```bash
-pip3 install git+https://github.com/SYAN83/weibopy
+pip3 install git+https://github.com/SYAN83/proxycrawl
 ```
 
 Installing from PyPi is not available yet.
