@@ -29,10 +29,9 @@ Installing from PyPi is not available yet.
 
 `proxycrawl` supports `GET`, `PUT`, and `POST` methods.
  
-`proxycrawl` uses `requests.Session` objects in the backend to make API calls so you can pass the same parameters as you usually do when you use `requests` to those methods. It returns `requests.Response` objects.
+`proxycrawl` uses `requests.Session` objects in the backend to make API calls and returns `requests.Response` objects. You can pass the same parameters to those methods as you usually do with `requests`.
 
 Here's a simple use case:
-
 
 ```python
 from proxycrawl import ProxyCrawlAPI
@@ -44,7 +43,7 @@ print(response.text)
 
 ```
 
-To verify that the IP addresses are changing every time when you make a request call, you can run:
+To verify that the IP address changes every time when you make a request call, you can run:
 
 ```python
 response = api.test()
