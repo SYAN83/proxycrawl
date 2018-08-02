@@ -38,7 +38,7 @@ from proxycrawl import ProxyCrawlAPI
 
 # You can find your token under Dashboard / API Documentation / URL parameters at proxycrawl.com after registration
 api = ProxyCrawlAPI(token='****************')
-response = api.get(url='<The website URL you want to scrape>')
+response = api.get(url='https://github.com/')
 print(response.text)
 
 ```
