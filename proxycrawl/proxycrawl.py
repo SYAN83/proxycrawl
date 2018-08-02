@@ -3,7 +3,7 @@ import requests
 
 class ProxyCrawlAPI(object):
     """
-
+    ProxyCrawl API
     """
 
     API_URL = 'https://api.proxycrawl.com/'
