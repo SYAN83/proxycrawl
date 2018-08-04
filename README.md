@@ -20,7 +20,7 @@ To use ProxyCrawl API, you need to register an account and get your token at [pr
 Installing from GitHub (bash):
 
 ```bash
-pip3 install git+https://github.com/SYAN83/weibopy
+pip3 install git+https://github.com/SYAN83/proxycrawl
 ```
 
 Installing from PyPi is not available yet.
@@ -29,22 +29,21 @@ Installing from PyPi is not available yet.
 
 `proxycrawl` supports `GET`, `PUT`, and `POST` methods.
  
-`proxycrawl` uses `requests.Session` objects in the backend to make API calls so you can pass the same parameters as you usually do when you use `requests` to those methods. It returns `requests.Response` objects.
+`proxycrawl` uses `requests.Session` objects in the backend to make API calls and returns `requests.Response` objects. You can pass the same parameters to those methods as you usually do with `requests`.
 
 Here's a simple use case:
-
 
 ```python
 from proxycrawl import ProxyCrawlAPI
 
 # You can find your token under Dashboard / API Documentation / URL parameters at proxycrawl.com after registration
 api = ProxyCrawlAPI(token='****************')
-response = api.get(url='<The website URL you want to scrape>')
+response = api.get(url='https://github.com/')
 print(response.text)
 
 ```
 
-To verify that the IP addresses are changing every time when you make a request call, you can run:
+To verify that the IP address changes every time when you make a request call, you can run:
 
 ```python
 response = api.test()

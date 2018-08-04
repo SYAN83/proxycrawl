@@ -5,7 +5,7 @@ from typing import Any, Dict
 
 class ProxyCrawlAPI(object):
     """
-
+    ProxyCrawl API
     """
 
     API_URL = 'https://api.proxycrawl.com/'
