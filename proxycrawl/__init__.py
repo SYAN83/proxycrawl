@@ -7,5 +7,5 @@ __version__ = '0.2'
 __author__ = 'Shu Yan'
 
 
-from proxycrawl.proxycrawl import ProxyCrawlAPI
+from proxycrawl.proxycrawl import ProxyCrawlAPI, ProxyCrawlAsyncAPI
 
