@@ -1,7 +1,7 @@
 import aiohttp
 
 
-class AsyncProxyCrawlAPI(aiohttp.ClientSession):
+class AsyncProxySession(aiohttp.ClientSession):
     """
     Async ProxyCrawl API
     """

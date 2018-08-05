@@ -1,7 +1,7 @@
 import requests
 
 
-class ProxyCrawlAPI(requests.Session):
+class ProxySession(requests.Session):
     """
     ProxyCrawl API
     """

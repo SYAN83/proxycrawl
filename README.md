@@ -17,6 +17,7 @@ For more information and registration, please go to [proxycrawl.com](https://pro
 
 To use ProxyCrawl, you need to register an account and get your token at [proxycrawl.com](https://proxycrawl.com/). 
 You can find your token under *Dashboard* / *API Documentation* / *URL parameters*.
+
 ## Installation
 
 Installing from GitHub (bash):
@@ -29,14 +30,14 @@ Installing from PyPi is not available yet.
 
 ## How to use
 
-`proxycrawl` includes two classes, `ProxyCrawlAPI` for synchronous HTTP requests and `AsynoProxyCrawlAPI` for asynchronous HTTP Requests in Python.
+`proxycrawl` includes two classes, `ProxySession` for synchronous HTTP requests and `AsynoProxySession` for asynchronous HTTP Requests in Python.
  
-1. `ProxyCrawlAPI` inherits `requests.Session` class:
+1. `ProxySession` inherits `requests.Session` class:
 
     ```python
-    from proxycrawl import ProxyCrawlAPI
+    from proxycrawl import ProxySession
     
-    session = ProxyCrawlAPI(token='****************')
+    session = ProxySession(token='****************')
     response = session.get(url='https://github.com/')
     print(response.text)
     ```
@@ -44,9 +45,9 @@ Installing from PyPi is not available yet.
     To verify that the IP address changes every time when you make a request call, you can run:
     
     ```python
-    from proxycrawl import ProxyCrawlAPI
+    from proxycrawl import ProxySession
     
-    session = ProxyCrawlAPI(token='****************')
+    session = ProxySession(token='****************')
     response = session.test()
     print(response)
     ```
@@ -56,15 +57,15 @@ Installing from PyPi is not available yet.
     ```python
     import aiohttp
     import asyncio
-    from proxycrawl import AsyncProxyCrawlAPI
+    from proxycrawl import AsyncProxySession
     
     async def fetch(session, url):
         async with session.get(url) as response:
             return await response.text()
     
     async def main():
-        async with AsyncProxyCrawlAPI(token='****************', 
-                                      connector=aiohttp.TCPConnector(ssl=False)) as session:
+        async with AsyncProxySession(token='****************', 
+                                     connector=aiohttp.TCPConnector(ssl=False)) as session:
             content = await fetch(session=session, url='https://github.com/')
             print(content)
     
@@ -72,16 +73,16 @@ Installing from PyPi is not available yet.
     loop.run_until_complete(main())
     ``` 
     
-    `AsyncProxyCrawlAPI.test()` function allows you to verify that the IP address changes in async mode:
+    `AsyncProxySession.test()` allows you to verify that the IP address changes in async mode:
     
     ```python
     import aiohttp
     import asyncio
-    from proxycrawl import AsyncProxyCrawlAPI
+    from proxycrawl import AsyncProxySession
  
     async def main():
-        async with AsyncProxyCrawlAPI(token='****************', 
-                                      connector=aiohttp.TCPConnector(ssl=False)) as session:
+        async with AsyncProxySession(token='****************', 
+                                     connector=aiohttp.TCPConnector(ssl=False)) as session:
             ip = await session.test()
             print(ip)
     
