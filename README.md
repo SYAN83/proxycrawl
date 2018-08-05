@@ -1,20 +1,22 @@
 # ProxyCrawl
 
-An easy-to-use Python library for scraping and crawling websites using [ProxyCrawl](https://proxycrawl.com) API.
+An easy-to-use Python HTTP requests library for scraping and crawling websites using [ProxyCrawl API](https://proxycrawl.com).
+
+Currently support asynchronous programming!
 
 ![Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
 ![License](https://img.shields.io/github/license/mashape/apistatus.svg)
 
-## What is ProxyCrawl?
+## What is ProxyCrawl API?
 
-ProxyCrawl allows you scrape while being anonymous and bypass any restriction, blocks or captchas. 
+ProxyCrawl API allows you scrape while being anonymous and bypass any restriction, blocks or captchas. 
 
 For more information and registration, please go to [proxycrawl.com](https://proxycrawl.com/).
 
 ## Registration
 
-To use ProxyCrawl API, you need to register an account and get your token at [proxycrawl.com](https://proxycrawl.com/)
-
+To use ProxyCrawl, you need to register an account and get your token at [proxycrawl.com](https://proxycrawl.com/). 
+You can find your token under *Dashboard* / *API Documentation* / *URL parameters*.
 ## Installation
 
 Installing from GitHub (bash):
@@ -27,25 +29,62 @@ Installing from PyPi is not available yet.
 
 ## How to use
 
-`proxycrawl` supports `GET`, `PUT`, and `POST` methods.
+`proxycrawl` includes two classes, `ProxyCrawlAPI` for synchronous HTTP requests and `AsynoProxyCrawlAPI` for asynchronous HTTP Requests in Python.
  
-`proxycrawl` uses `requests.Session` objects in the backend to make API calls and returns `requests.Response` objects. You can pass the same parameters to those methods as you usually do with `requests`.
+1. `ProxyCrawlAPI` inherits `requests.Session` class:
 
-Here's a simple use case:
+    ```python
+    from proxycrawl import ProxyCrawlAPI
+    
+    session = ProxyCrawlAPI(token='****************')
+    response = session.get(url='https://github.com/')
+    print(response.text)
+    ```
+    
+    To verify that the IP address changes every time when you make a request call, you can run:
+    
+    ```python
+    from proxycrawl import ProxyCrawlAPI
+    
+    session = ProxyCrawlAPI(token='****************')
+    response = session.test()
+    print(response)
+    ```
 
-```python
-from proxycrawl import ProxyCrawlAPI
-
-# You can find your token under Dashboard / API Documentation / URL parameters at proxycrawl.com after registration
-api = ProxyCrawlAPI(token='****************')
-response = api.get(url='https://github.com/')
-print(response.text)
-
-```
-
-To verify that the IP address changes every time when you make a request call, you can run:
-
-```python
-response = api.test()
-print(response.json())
-```
+2. `AsyncProxyCrawlAPI` inherits `aiohttp.ClientSession` class:
+    
+    ```python
+    import aiohttp
+    import asyncio
+    from proxycrawl import AsyncProxyCrawlAPI
+    
+    async def fetch(session, url):
+        async with session.get(url) as response:
+            return await response.text()
+    
+    async def main():
+        async with AsyncProxyCrawlAPI(token='****************', 
+                                      connector=aiohttp.TCPConnector(ssl=False)) as session:
+            content = await fetch(session=session, url='https://github.com/')
+            print(content)
+    
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
+    ``` 
+    
+    `AsyncProxyCrawlAPI.test()` function allows you to verify that the IP address changes in async mode:
+    
+    ```python
+    import aiohttp
+    import asyncio
+    from proxycrawl import AsyncProxyCrawlAPI
+ 
+    async def main():
+        async with AsyncProxyCrawlAPI(token='****************', 
+                                      connector=aiohttp.TCPConnector(ssl=False)) as session:
+            ip = await session.test()
+            print(ip)
+    
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
+    ``` 
