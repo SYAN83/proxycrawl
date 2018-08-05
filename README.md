@@ -15,7 +15,7 @@ For more information and registration, please go to [proxycrawl.com](https://pro
 
 ## Registration
 
-To use ProxyCrawl, you need to register an account and get your token at [proxycrawl.com](https://proxycrawl.com/). 
+To use ProxyCrawl, you need to register an account and obtain your token at [proxycrawl.com](https://proxycrawl.com/). 
 You can find your token under *Dashboard* / *API Documentation* / *URL parameters*.
 
 ## Installation
