@@ -47,8 +47,8 @@ Installing from PyPi is not available yet.
     from proxycrawl import ProxyCrawlAPI
     
     session = ProxyCrawlAPI(token='****************')
-    response = session.test()
-    print(response)
+    ip = session.test()
+    print(ip)
     ```
 
 2. `AsyncProxyCrawlAPI` inherits `aiohttp.ClientSession` class:
