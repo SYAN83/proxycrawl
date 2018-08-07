@@ -2,7 +2,7 @@
 
 An easy-to-use Python HTTP requests library for scraping and crawling websites using [ProxyCrawl API](https://proxycrawl.com).
 
-Currently support asynchronous programming!
+Currently support requests, aiohttp and scrapy!
 
 ![Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
 ![License](https://img.shields.io/github/license/mashape/apistatus.svg)
@@ -30,7 +30,10 @@ Installing from PyPi is not available yet.
 
 ## How to use
 
-`proxycrawl` includes two classes, `ProxySession` for synchronous HTTP requests and `AsynoProxySession` for asynchronous HTTP Requests in Python.
+`proxycrawl` includes three classes:
+ `ProxySession` for synchronous HTTP requests, 
+ `AsynoProxySession` for asynchronous HTTP Requests,
+  as well as `ScrapyProxyRequest` for scrapy.
  
 1. `ProxySession` inherits `requests.Session` class:
 
@@ -89,3 +92,32 @@ Installing from PyPi is not available yet.
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
     ``` 
+
+3. `ScrapyProxyRequest` inherits `scrapy.http.Request` class:
+    
+    ```python
+    import scrapy
+    from proxycrawl import scrapyProxyRequest
+    
+
+    ScrapyProxyRequest = scrapyProxyRequest(token='****************')
+ 
+ 
+    class QuotesSpider(scrapy.Spider):
+        name = "quotes"
+    
+        def start_requests(self):
+            urls = [
+                'http://quotes.toscrape.com/page/1/',
+                'http://quotes.toscrape.com/page/2/',
+            ]
+            for url in urls:
+                yield ScrapyProxyRequest(url=url, callback=self.parse)
+    
+        def parse(self, response):
+            page = response.url.split("/")[-2]
+            filename = 'quotes-%s.html' % page
+            with open(filename, 'wb') as f:
+                f.write(response.body)
+            self.log('Saved file %s' % filename)
+    ```
