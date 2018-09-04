@@ -33,7 +33,8 @@ setuptools.setup(
     python_requires=">=3.5",
     install_requires=[
         "requests>=2.11.1",
-        "aiohttp>=2.3"
+        "aiohttp>=2.3",
+        "scrapy"
     ],
     classifiers=(
         "Programming Language :: Python :: 3",
