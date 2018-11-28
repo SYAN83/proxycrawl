@@ -32,7 +32,7 @@ Installing from PyPi is not available yet.
 
 `proxycrawl` includes three classes:
  `ProxySession` for synchronous HTTP requests, 
- `AsynoProxySession` for asynchronous HTTP Requests,
+ `AsyncProxySession` for asynchronous HTTP Requests,
   as well as `ScrapyProxyRequest` for scrapy.
  
 1. `ProxySession` inherits `requests.Session` class:
@@ -55,7 +55,7 @@ Installing from PyPi is not available yet.
     print(ip)
     ```
 
-2. `AsynoProxySession` inherits `aiohttp.ClientSession` class:
+2. `AsyncProxySession` inherits `aiohttp.ClientSession` class:
     
     ```python
     import aiohttp
